@@ -152,6 +152,7 @@ public class InfixToPostfix {
                         postfix.append(s.pop());
                     }
                 }
+                
                 if (c == '*' || c == '/') {
 
                     /**
