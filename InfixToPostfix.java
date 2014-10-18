@@ -3,6 +3,9 @@
  * @author John Paul Smith
  * 
  * Infix-to-postfix translation. The Shunting-yard algorithm.
+ *
+ * Currently this code works only on single-digit terms:
+ * "12+3" and "1+23" will both give the result: "123+".
  */
 package misc;
 
@@ -12,11 +15,12 @@ public class InfixToPostfix {
 
     public static void main(String[] args) {
 
-        String test = "a+b*c-d";
+        String exp = "a+b*c-(d/e)^f";
+        //String exp = "(1+8)*(6-5)/((3-2)*(2+2))";
 
         try {
-            System.out.println("The postfix translation of '" + test + "' is "
-                    + InfixToPostfix.infixToPostfix(test));
+            System.out.println("The postfix translation of '" + exp + "' is "
+                    + InfixToPostfix.infixToPostfix(exp));
         } catch (InvalidExpressionException ex) {
             System.out.println(ex.getMessage());
         }
