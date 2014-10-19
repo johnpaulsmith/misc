@@ -48,7 +48,7 @@ public class InfixToPostfix {
             throws InvalidExpressionException, ParenthesesMismatchException {
 
         /**
-         * Remove any spaces or other white-space characters.
+         * Remove any spaces.
          */
         infix = infix.replace(" ", "");
         
