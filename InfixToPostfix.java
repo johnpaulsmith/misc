@@ -6,7 +6,13 @@
  *
  * Currently this code works only on single-digit terms:
  * "12+3" and "1+23" will both give the result: "123+".
+ * 
+ * An example test input:
+ * 
+ * The postfix translation of 
+ * '(1 + 8) / (6 - 5) * ((3 - 2) * (2 + 2))' is '18+65-/32-22+**'
  */
+ 
 package misc;
 
 import java.util.Stack;
@@ -15,12 +21,12 @@ public class InfixToPostfix {
 
     public static void main(String[] args) {
 
-        String exp = "a+b*c-(d/e)^f";
-        //String exp = "(1+8)*(6-5)/((3-2)*(2+2))";
+        //String exp = "a + b * c - (d / e)^f";
+        String exp = "(1 + 8) * (6 - 5) / ((3 - 2) * (2 + 2))";
 
         try {
             System.out.println("The postfix translation of '" + exp + "' is "
-                    + InfixToPostfix.infixToPostfix(exp));
+                    + "'" + InfixToPostfix.infixToPostfix(exp) + "'");
         } catch (InvalidExpressionException ex) {
             System.out.println(ex.getMessage());
         }
@@ -42,14 +48,19 @@ public class InfixToPostfix {
             throws InvalidExpressionException, ParenthesesMismatchException {
 
         /**
+         * Remove any spaces or other white-space characters.
+         */
+        infix = infix.replace(" ", "");
+        
+        /**
          * The end-line termination character ';' is included here.
          */
         if (!infix.matches("[a-zA-Z0-9+-/*%^();]+?")) {
             
             throw new InvalidExpressionException("invalid infix expression: "
                     + infix);
-        }
-
+        }        
+        
         Stack<Character> s = new Stack<>();
 
         StringBuilder postfix = new StringBuilder();
