@@ -65,29 +65,29 @@ public class InfixToPostfix {
 
         StringBuilder postfix = new StringBuilder();
 
-        for (int x = 0; x < infix.length(); ++x) {
+        for (int i = 0; i < infix.length(); ++i) {
 
-            Character c = infix.charAt(x);            
+            Character c = infix.charAt(i);            
 
             /**
              * Process alphanumeric characters.
              */
             if (Character.isAlphabetic(c) || Character.isDigit(c)) {
 
-                if (x < (infix.length() - 1)
-                        && Character.isAlphabetic(infix.charAt(x + 1))) {
+                if (i < (infix.length() - 1)
+                        && Character.isAlphabetic(infix.charAt(i + 1))) {
 
                     throw new InvalidExpressionException("invalid infix "
-                            + "expression: operands '" + infix.charAt(x) 
-                            + "' and '" + infix.charAt(x + 1) + 
+                            + "expression: operands '" + infix.charAt(i) 
+                            + "' and '" + infix.charAt(i + 1) + 
                             "' without operator");
                 }
 
-                if (x < (infix.length() - 1) && infix.charAt(x + 1) == '(') {
+                if (i < (infix.length() - 1) && infix.charAt(i + 1) == '(') {
                     
                     throw new InvalidExpressionException("invalid infix "
-                            + "expression: operand '" + infix.charAt(x) 
-                            + " and '" + infix.charAt(x + 1) 
+                            + "expression: operand '" + infix.charAt(i) 
+                            + " and '" + infix.charAt(i + 1) 
                             + "' adjacent without operator");
                 }
 
